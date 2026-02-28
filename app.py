@@ -97,3 +97,5 @@ else:
                     st.session_state.messages.append({"role": "assistant", "content": response})        
 
 
+st.markdown("---")
+st.caption("Developed by Ajitesh Chaurasia")
