@@ -1,0 +1,8 @@
+streamlit
+huggingface_hub
+openai-whisper
+PyPDF2
+python-dotenv
+librosa
+soundfile
+python-dotenv
