@@ -1,0 +1,10 @@
+[theme]
+primaryColor = "#2962ff"        # A professional "Engineering Blue"
+backgroundColor = "#25aa8df3"     # Soft off-white for readability
+secondaryBackgroundColor = "#ffffff" 
+textColor = "#212529"
+font = "sans serif"
+
+
+
+#8b942c
