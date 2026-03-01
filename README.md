@@ -56,9 +56,8 @@ HF_TOKEN=hf_your_actual_token_here
 streamlit run app.py
 ```
 
-📁 Project Structure
-Plaintext
-
+### 📁 Project Structure
+```
 LearnitAI/
 ├── .env                # Secret API Keys (Excluded via .gitignore)
 ├── .gitignore          # Prevents sensitive data from being pushed to GitHub
@@ -67,11 +66,13 @@ LearnitAI/
 ├── audio_processor.py  # Audio-to-Text processing via Whisper
 ├── requirements.txt    # List of project dependencies
 └── README.md           # Project documentation
+```
 
-🛡️ Security & Deployment
+### 🛡️ Security & Deployment
 
-    Secrets Management: The project uses a .env file and .gitignore to prevent API key exposure.
+* Secrets Management: The project uses a .env file and .gitignore to prevent API key exposure.
+* Cloud Ready: When deployed to Streamlit Community Cloud, API tokens are managed via the secure "Secrets" dashboard.
+* Session State: Utilizes Streamlit's st.session_state to maintain a persistent chat history, providing a modern conversational experience.
 
-    Cloud Ready: When deployed to Streamlit Community Cloud, API tokens are managed via the secure "Secrets" dashboard.
 
-    Session State: Utilizes Streamlit's st.session_state to maintain a persistent chat history, providing a modern conversational experience.
+#### Developed by: Ajitesh Chaurasia
