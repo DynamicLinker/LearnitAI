@@ -31,7 +31,7 @@ To run LearnitAI locally, follow these steps:
 
 ### 1. Clone the Repository
 ```sh
-git clone [https://github.com/YOUR_USERNAME/LearnitAI.git](https://github.com/YOUR_USERNAME/LearnitAI.git)
+git clone https://github.com/DynamicLinker/LearnitAI.git
 cd LearnitAI
 ```
 
