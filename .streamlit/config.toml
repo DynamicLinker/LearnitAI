@@ -1,6 +1,6 @@
 [theme]
-primaryColor = "#2962ff"        # A professional "Engineering Blue"
-backgroundColor = "#25aa8df3"     # Soft off-white for readability
+primaryColor = "#2962ff"       
+backgroundColor = "#2bd6b1"    
 secondaryBackgroundColor = "#ffffff" 
 textColor = "#212529"
 font = "sans serif"
