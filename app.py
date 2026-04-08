@@ -25,7 +25,7 @@ else:
     with tab1:
         st.header("📄 Simplify Your Notes")
 
-        pdf_file = st.file_uploader("Upload Your PDF Notes", type='pdf')
+        pdf_file = st.file_uploader("Upload Your PDF Notes", type='pdf', label_visibility="visible")
 
 
         if pdf_file is not None:
@@ -47,7 +47,7 @@ else:
     with tab2:
         st.header("🎙️ Summarize Recorded Lectures")
 
-        audio_file = st.file_uploader("Upload Lecture Audio", type=['mp3','wav','aac','m4a'])
+        audio_file = st.file_uploader("Upload Lecture Audio", type=['mp3','wav','aac','m4a'], label_visibility="visible")
 
 
         if st.button("Proceed", key="aud_btn"):
