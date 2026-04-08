@@ -42,59 +42,59 @@ else:
                         st.markdown(f"### {task} result:")
                         st.write(result)
             except Exception as e:
-                st.error("Upload Failed. Error: {e}")
+                st.error(f"Upload Failed. Error: {e}")
 
-        with tab2:
-            st.header("🎙️ Summarize Recorded Lectures")
+    with tab2:
+        st.header("🎙️ Summarize Recorded Lectures")
 
-            audio_file = st.file_uploader("Upload Lecture Audio", type=['mp3','wav','aac','m4a'])
+        audio_file = st.file_uploader("Upload Lecture Audio", type=['mp3','wav','aac','m4a'])
 
 
-            if st.button("Proceed", key="aud_btn"):
-                try :
-                    with st.spinner("LearnitAI is Thinking"):
-                        with open("temp_rec.mp3","wb") as f:
-                            f.write(audio_file.read())
-                        
-                        transcript = transcribe_lecture("temp_rec.mp3")
-                        st.success("Transcription Complete!")
-
-                        with st.spinner("Preparing Notes"):
-                            summary = ai.process_request(transcript, "Summarize")
-                            st.markdown("### 📝 Lecture Study Notes:")
-                            st.write(summary) 
+        if st.button("Proceed", key="aud_btn"):
+            try :
+                with st.spinner("LearnitAI is Thinking"):
+                    with open("temp_rec.mp3","wb") as f:
+                        f.write(audio_file.read())
                     
-                        os.remove("temp_rec.mp3")
+                    transcript = transcribe_lecture("temp_rec.mp3")
+                    st.success("Transcription Complete!")
 
-                except Exception as e:
-                    st.error("Upload Failed. Error: {e}")
-        
-        with tab3:
-            st.header("💬 Ask Your AI Tutor")
+                    with st.spinner("Preparing Notes"):
+                        summary = ai.process_request(transcript, "Summarize")
+                        st.markdown("### 📝 Lecture Study Notes:")
+                        st.write(summary) 
+                
+                    os.remove("temp_rec.mp3")
+
+            except Exception as e:
+                st.error(f"Upload Failed. Error: {e}")
     
-            if "messages" not in st.session_state:
-                st.session_state.messages = []
+    with tab3:
+        st.header("💬 Ask Your AI Tutor")
 
-            chat_container = st.container()
+        if "messages" not in st.session_state:
+            st.session_state.messages = []
 
+        chat_container = st.container()
+
+        with chat_container:
+            for message in st.session_state.messages:
+                with st.chat_message(message["role"]):
+                    st.markdown(message["content"])
+
+        if prompt := st.chat_input("Explain the difference between TCP and UDP..."):
+            
             with chat_container:
-                for message in st.session_state.messages:
-                    with st.chat_message(message["role"]):
-                        st.markdown(message["content"])
+                st.chat_message("user").markdown(prompt)
+            st.session_state.messages.append({"role": "user", "content": prompt})
 
-            if prompt := st.chat_input("Explain the difference between TCP and UDP..."):
+            with st.spinner("LearnitAI is thinking..."):
+                response = ai.process_request(prompt, "Chat")
                 
                 with chat_container:
-                    st.chat_message("user").markdown(prompt)
-                st.session_state.messages.append({"role": "user", "content": prompt})
-
-                with st.spinner("LearnitAI is thinking..."):
-                    response = ai.process_request(prompt, "Chat")
-                    
-                    with chat_container:
-                        with st.chat_message("assistant"):
-                            st.markdown(response)
-                    st.session_state.messages.append({"role": "assistant", "content": response})        
+                    with st.chat_message("assistant"):
+                        st.markdown(response)
+                st.session_state.messages.append({"role": "assistant", "content": response})        
 
 
 st.markdown("---")
